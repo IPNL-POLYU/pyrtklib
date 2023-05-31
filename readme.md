@@ -7,11 +7,11 @@ Installation of pyrtklib is very easy, just clone the code and install it.
 0. Dependencies
    
     We don't provide pre-compiled package so far, thus, this library will be compiled in time. (Looking forward one day it can be directly installed by pip!) It requires several dependencies, including gcc and cmake. If you are using on a MacOS, please first install gcc by brew and set the compiler path, because RTKLIB used GNU C features, which is hard to solve in clang. MSVC is not tested.
-2. Clone from github
+1. Clone from github
 ```shell
 git clone git@github.com:IPNL-POLYU/pyrtklib.git
 ```
-3. Install
+2. Install
 ```shell
 cd pyrtklib
 python3 setup.py install

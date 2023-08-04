@@ -191,7 +191,7 @@ def gen_defs(defs):
 		tmp+='    m.attr("%s")=%s;\n'%(i[0],i[1])
 	return tmp
 
-DEFINE = ['ENACMP','ENAGAL','ENAGLO']
+DEFINE = ['ENACMP','ENAGAL','ENAGLO','ENAQZS']
 #parse the header
 with open('pyrtklib/rtksrc/rtklib.h','r') as f:
 	src = f.read()

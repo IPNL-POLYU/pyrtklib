@@ -11,6 +11,7 @@ class CMakeExtension(Extension):
 
 
 class BuildExt(build_ext):
+    debug = True
     def run(self):
         for ext in self.extensions:
             if isinstance(ext, CMakeExtension):
@@ -26,6 +27,7 @@ class BuildExt(build_ext):
         extdir.mkdir(parents=True, exist_ok=True)
 
         config = "Debug" if self.debug else "Release"
+        config = "Release"
         cmake_args = [
             "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=" + str(extdir.parent.absolute()),
             "-DCMAKE_BUILD_TYPE=" + config

@@ -486,6 +486,7 @@ typedef struct {        /* observation data record */
     double L[NFREQ+NEXOBS]; /* observation data carrier-phase (cycle) */
     double P[NFREQ+NEXOBS]; /* observation data pseudorange (m) */
     float  D[NFREQ+NEXOBS]; /* observation data doppler frequency (Hz) */
+    double CP[3]; /*corrected value* iono_L1,tropo,dts */
 } obsd_t;
 
 typedef struct {        /* observation data */
@@ -1646,7 +1647,7 @@ extern int lambda(int n, int m, const double *a, const double *Q, double *F,
                   double *s);
 
 /* standard positioning ------------------------------------------------------*/
-extern int pntpos(const obsd_t *obs, int n, const nav_t *nav,
+extern int pntpos(obsd_t *obs, int n, const nav_t *nav,
                   const prcopt_t *opt, sol_t *sol, double *azel,
                   ssat_t *ssat, char *msg);
 

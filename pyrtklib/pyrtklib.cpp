@@ -683,7 +683,7 @@ extern int lambda(int n, int m,Arr1D<double> Sa,Arr1D<double> SQ,Arr1D<double> S
     auto tmp = lambda(n, m, a, Q, F, s);
     return tmp;
 }
-extern int pntpos(const obsd_t *obs, int n, const nav_t *nav, const prcopt_t *opt, sol_t *sol,Arr1D<double> Sazel, ssat_t *ssat,Arr1D<char> Smsg){
+extern int pntpos(obsd_t *obs, int n, const nav_t *nav, const prcopt_t *opt, sol_t *sol,Arr1D<double> Sazel, ssat_t *ssat,Arr1D<char> Smsg){
     double *azel = Sazel.src;
     char *msg = Smsg.src;
     auto tmp = pntpos(obs, n, nav, opt, sol, azel, ssat, msg);
@@ -868,12 +868,12 @@ PYBIND11_MODULE(pyrtklib, m) {
     m.attr("MAXPRNGAL")=30;
     m.attr("NSATGAL")=(MAXPRNGAL-MINPRNGAL+1);
     m.attr("NSYSGAL")=1;
-    m.attr("MINPRNQZS")=0;
-    m.attr("MAXPRNQZS")=0;
-    m.attr("MINPRNQZS_S")=0;
-    m.attr("MAXPRNQZS_S")=0;
-    m.attr("NSATQZS")=0;
-    m.attr("NSYSQZS")=0;
+    m.attr("MINPRNQZS")=193;
+    m.attr("MAXPRNQZS")=199;
+    m.attr("MINPRNQZS_S")=183;
+    m.attr("MAXPRNQZS_S")=189;
+    m.attr("NSATQZS")=(MAXPRNQZS-MINPRNQZS+1);
+    m.attr("NSYSQZS")=1;
     m.attr("MINPRNCMP")=1;
     m.attr("MAXPRNCMP")=35;
     m.attr("NSATCMP")=(MAXPRNCMP-MINPRNCMP+1);
@@ -1274,6 +1274,7 @@ PYBIND11_MODULE(pyrtklib, m) {
         .def_property_readonly("L",[](obsd_t& o) {Arr1D<double>* tmp = new Arr1D<double>(o.L,NFREQ+NEXOBS);return tmp;},py::return_value_policy::reference)
         .def_property_readonly("P",[](obsd_t& o) {Arr1D<double>* tmp = new Arr1D<double>(o.P,NFREQ+NEXOBS);return tmp;},py::return_value_policy::reference)
         .def_property_readonly("D",[](obsd_t& o) {Arr1D<float>* tmp = new Arr1D<float>(o.D,NFREQ+NEXOBS);return tmp;},py::return_value_policy::reference)
+        .def_property_readonly("CP",[](obsd_t& o) {Arr1D<double>* tmp = new Arr1D<double>(o.CP,3);return tmp;},py::return_value_policy::reference)
         .def_property_readonly("ptr",[](obsd_t& o){return &o;},py::return_value_policy::reference);
 
     py::class_<obs_t>(m,"obs_t").def(py::init())
@@ -2217,7 +2218,7 @@ PYBIND11_MODULE(pyrtklib, m) {
     m.def("strsetopt",static_cast<void(*)(Arr1D<int> Sopt)>(&strsetopt),"rtklib strsetopt");
     m.def("strsendnmea",static_cast<void(*)(stream_t *stream,Arr1D<double> Spos)>(&strsendnmea),"rtklib strsendnmea");
     m.def("lambda",static_cast<int(*)(int n, int m,Arr1D<double> Sa,Arr1D<double> SQ,Arr1D<double> SF,Arr1D<double> Ss)>(&lambda),"rtklib lambda");
-    m.def("pntpos",static_cast<int(*)(const obsd_t *obs, int n, const nav_t *nav, const prcopt_t *opt, sol_t *sol,Arr1D<double> Sazel, ssat_t *ssat,Arr1D<char> Smsg)>(&pntpos),"rtklib pntpos");
+    m.def("pntpos",static_cast<int(*)(obsd_t *obs, int n, const nav_t *nav, const prcopt_t *opt, sol_t *sol,Arr1D<double> Sazel, ssat_t *ssat,Arr1D<char> Smsg)>(&pntpos),"rtklib pntpos");
     m.def("pppamb",static_cast<int(*)(rtk_t *rtk, const obsd_t *obs, int n, const nav_t *nav,Arr1D<double> Sazel)>(&pppamb),"rtklib pppamb");
     m.def("windupcorr",static_cast<void(*)(gtime_t time,Arr1D<double> Srs,Arr1D<double> Srr,Arr1D<double> Sphw)>(&windupcorr),"rtklib windupcorr");
     m.def("postpos",static_cast<int(*)(gtime_t ts, gtime_t te, double ti, double tu, const prcopt_t *popt, const solopt_t *sopt, const filopt_t *fopt,std::vector<std::string> Dinfile, int n,Arr1D<char> Soutfile, const char *rov, const char *base)>(&postpos),"rtklib postpos");

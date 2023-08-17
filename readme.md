@@ -79,4 +79,13 @@ For more detail, you can see in the example.py.
 If you find this tool useful, you can cite our paper as:
 
 
-**Fisheye camera aided NLOS exclusion and learning based pseudorange correction**， R.Hu, W.Wen, Li-ta.Hsu, 2023, ITSC
+```latex
+@inproceedings{hu2023fisheye,
+  title={Fisheye camera aided NLOS exclusion and learning-based pseudorange correction},
+  author={Hu, Runzhi and Wen, Weisong and Hsu, Li-ta},
+  booktitle={2023 IEEE 26th International Conference on Intelligent Transportation Systems (ITSC)},
+  pages={1--8},
+  year={2023},
+  organization={IEEE}
+}
+```

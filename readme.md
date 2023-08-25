@@ -4,12 +4,12 @@ Deep learning has reached the state-of-the-art in many fields, including
 This is a Python binding for [RTKLIB](https://github.com/tomojitakasu/RTKLIB), the most popular GNSS-RTK positioning C library. However, many researchers are currently using Python for research, especially in deep learning field. Thus, we implement this Python interface of RTKLIB to build a bridge between Python and positioning. By means of RTKLIB, you can easily read data from rinex file and process the positioning using the methods provided by RTKLIB, such as SPP, RTK, PPP.
 <table>
 <tr sytle="font-size:10px">
-<td width='50%'>
+<td width='50%' style="vertical-align:top;">
 
 ![Python Code](https://github.com/IPNL-POLYU/pyrtklib/blob/main/image/rtkpy.png?raw=true)
 
 </td>
-<td width='50%'>
+<td width='50%' style="vertical-align:top;">
 
 ![C Code](https://github.com/IPNL-POLYU/pyrtklib/blob/main/image/rtkc.png?raw=true)
 

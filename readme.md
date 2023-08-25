@@ -10,10 +10,13 @@ This is a Python binding for [RTKLIB](https://github.com/tomojitakasu/RTKLIB), t
 ```python
 # Python code for Hello World
 print("Hello, World!")
+```
 </td>
 <td>
+```python
 // JavaScript code for Hello World
 console.log("Hello, World!");
+```
 </td>
 </tr>
 </table>

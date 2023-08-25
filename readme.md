@@ -1,5 +1,4 @@
 # PyRTKLIB -- A bridge between AI and GNSS.
-Deep learning has reached the state-of-the-art in many fields, including 
 ## Introduction
 This is a Python binding for [RTKLIB](https://github.com/tomojitakasu/RTKLIB), the most popular GNSS-RTK positioning C library. However, many researchers are currently using Python for research, especially in deep learning field. Thus, we implement this Python interface of RTKLIB to build a bridge between Python and positioning. By means of RTKLIB, you can easily read data from rinex file and process the positioning using the methods provided by RTKLIB, such as SPP, RTK, PPP.
 <table>

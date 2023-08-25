@@ -5,15 +5,19 @@ This is a Python binding for [RTKLIB](https://github.com/tomojitakasu/RTKLIB), t
 <table>
 <tr sytle="font-size:10px">
 <td width='50%'>
-![Python Code](https://github.com/IPNL-POLYU/pyrtklib/blob/main/image/rtkpy.png?raw=true
-)
+
+![Python Code](https://github.com/IPNL-POLYU/pyrtklib/blob/main/image/rtkpy.png?raw=true)
+
 </td>
 <td width='50%'>
-![Python Code](https://github.com/IPNL-POLYU/pyrtklib/blob/main/image/rtkc.png?raw=true
-)
+
+![C Code](https://github.com/IPNL-POLYU/pyrtklib/blob/main/image/rtkc.png?raw=true)
+
 </td>
 </tr>
 </table>
+
+
 
 ## Installation
 Installation of pyrtklib is very easy, just clone the code and install it.

@@ -486,7 +486,7 @@ typedef struct {        /* observation data record */
     double L[NFREQ+NEXOBS]; /* observation data carrier-phase (cycle) */
     double P[NFREQ+NEXOBS]; /* observation data pseudorange (m) */
     float  D[NFREQ+NEXOBS]; /* observation data doppler frequency (Hz) */
-    double CP[3]; /*corrected value* iono_L1,tropo,dts */
+    double CP[4]; /*corrected value* P with code bias correction,iono_L1,tropo,dts */
 } obsd_t;
 
 typedef struct {        /* observation data */

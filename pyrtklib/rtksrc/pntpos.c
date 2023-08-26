@@ -249,9 +249,10 @@ static int rescode(int iter, obsd_t *obs, int n, const double *rs,
         }
         /* pseudorange residual */
         v[nv]=P-(r+dtr-CLIGHT*dts[i*2]+dion+dtrp);
-        obs[i].CP[0] = dion;
-        obs[i].CP[1] = dtrp;
-        obs[i].CP[2] = -CLIGHT*dts[i*2];
+        obs[i].CP[0] = P;
+        obs[i].CP[1] = dion;
+        obs[i].CP[2] = dtrp;
+        obs[i].CP[3] = -CLIGHT*dts[i*2];
         //printf("%lf\n",obs[i].CP);
         /* design matrix */
         for (j=0;j<NX;j++) H[j+nv*NX]=j<3?-e[j]:(j==3?1.0:0.0);

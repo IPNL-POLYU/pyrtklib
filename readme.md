@@ -1,8 +1,10 @@
 # PyRTKLIB -- A bridge between AI and GNSS.
 ## Introduction
 This is a Python binding for [RTKLIB](https://github.com/tomojitakasu/RTKLIB), the most popular GNSS-RTK positioning C library. However, many researchers are currently using Python for research, especially in deep learning field. Thus, we implement this Python interface of RTKLIB to build a bridge between Python and positioning. By means of RTKLIB, you can easily read data from rinex file and process the positioning using the methods provided by RTKLIB, such as SPP, RTK, PPP.
-  If you want to use deeply of the rtklib, please refer to the [point position example](https://github.com/IPNL-POLYU/pyrtklib/blob/main/example_pntpos.py).
-  If you just need the result, please refer to the [post position example](https://github.com/IPNL-POLYU/pyrtklib/blob/main/example_postpos.py).
+
+If you want to use the rtklib deeply, please refer to the [point position example](https://github.com/IPNL-POLYU/pyrtklib/blob/main/example_pntpos.py).
+
+If you just need the result, please refer to the [post position example](https://github.com/IPNL-POLYU/pyrtklib/blob/main/example_postpos.py).
 <table>
 <tr sytle="font-size:10px">
 <td width='50%' style="vertical-align:top;">

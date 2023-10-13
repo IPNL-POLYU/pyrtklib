@@ -3,7 +3,9 @@ import pathlib
 from setuptools import setup
 from setuptools import Extension
 from setuptools.command.build_ext import build_ext
+import distutils.sysconfig
 
+pyinc = distutils.sysconfig.get_python_inc()
 
 class CMakeExtension(Extension):
     def __init__(self, name):
@@ -28,7 +30,8 @@ class BuildExt(build_ext):
         config = "Debug" if self.debug else "Release"
         cmake_args = [
             "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=" + str(extdir.parent.absolute()),
-            "-DCMAKE_BUILD_TYPE=" + config
+            "-DCMAKE_BUILD_TYPE=" + config,
+            "-DPYTHON_INCLUDE_DIR="+pyinc
         ]
 
         build_args = [

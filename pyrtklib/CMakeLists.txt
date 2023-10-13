@@ -1,16 +1,7 @@
 cmake_minimum_required(VERSION 3.0)
 project(pyrtklib)
-set( CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 17)
 
-if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin") # if MAC 设置
-    execute_process(COMMAND brew list --versions gcc OUTPUT_VARIABLE BREW_GCC_VERSION OUTPUT_STRIP_TRAILING_WHITESPACE)
-    string(REGEX MATCH "[0-9]+\\.[0-9]+\\.[0-9]+" GCC_FULL_VERSION ${BREW_GCC_VERSION})
-    string(REGEX MATCH "^[0-9]+" GCC_MAJOR_VERSION ${GCC_FULL_VERSION})
-    set(CMAKE_C_COMPILER "/usr/local/bin/gcc-${GCC_MAJOR_VERSION}")
-    set(CMAKE_CXX_COMPILER "/usr/local/bin/g++-${GCC_MAJOR_VERSION}")
-endif()
-add_subdirectory(pybind11)
-include_directories(${PYBIND11_INCLUDE_DIRS})
 if(DEFINED PYTHON_INCLUDE_DIR AND NOT "${PYTHON_INCLUDE_DIR}" STREQUAL "")
     message(STATUS "Using python_include_dir from argument: ${PYTHON_INCLUDE_DIR}")
     include_directories(${PYTHON_INCLUDE_DIR})
@@ -18,6 +9,10 @@ else()
     message(STATUS "python_include_dir not provided. Using find_package(PythonLibs) instead.")
     find_package(PythonLibs REQUIRED)
 endif()
+
+add_subdirectory(pybind11)
+include_directories(${PYBIND11_INCLUDE_DIRS})
+
 
 
 ADD_DEFINITIONS(-DENACMP -DENAGAL -DENAGLO -DTRACE -DDLL -DEBUG)

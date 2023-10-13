@@ -58,13 +58,15 @@ class BuildExt(build_ext):
 pyrtklib = CMakeExtension("pyrtklib")
 
 setup(name="pyrtklib",
-      version="0.1",
+      version="0.2",
       description="This is a python binding for rtklib",
       author="Runzhi Hu",
       author_email = "run-zhi.hu@connect.polyu.hk",
       url = "https://github.com/IPNL-POLYU/pyrtklib",
       packages=["pyrtklib"],
-      data_files=[('',['pyrtklib/pyrtklib.pyi'])],
+      package_data={
+        'pyrtklib':['pyrtklib.pyi']
+      },
       ext_modules=[pyrtklib],  
       cmdclass={"build_ext": BuildExt}
 )

@@ -1,4 +1,16 @@
 # PyRTKLIB -- A bridge between AI and GNSS.
+
+## News
+
+### 2023.10.14 Install via pip
+
+**Big Progress!!!!**
+
+Now you can install it via pip
+```
+pip install pyrtklib
+```
+
 ## Introduction
 This is a Python binding for [RTKLIB](https://github.com/tomojitakasu/RTKLIB), the most popular GNSS-RTK positioning C library. However, many researchers are currently using Python for research, especially in deep learning field. Thus, we implement this Python interface of RTKLIB to build a bridge between Python and positioning. By means of RTKLIB, you can easily read data from rinex file and process the positioning using the methods provided by RTKLIB, such as SPP, RTK, PPP.
 
@@ -23,11 +35,28 @@ If you just need the result, please refer to the [post position example](https:/
 
 
 ## Installation
+### Install Via Pip (**Recommend**)
+```
+pip install pyrtklib
+```
+The package relies on both system version and python version. Currently, we provide the pre-compiled wheel package on Linux and Macos. The Linux version is compiled for manylinux2010 (GLIBC after 2.12). Limited to hardware, the Macos version can only be compiled on two devices -- Macos Ventura Intel and Macos Sonoma M1. (If you can help us compile on more platforms, we would appreciate it.) Here is a table for the support information.
+
+
+| Python | Linux(After 2010) | Macos Sonoma(M1) | Macos Ventura(Intel)| 
+| :----: | :----: | :----: | :----: |
+| 3.6 | &#x2705; | &#x274C; | &#x274C; |
+| 3.7 | &#x2705; | &#x274C; | &#x274C; |
+| 3.8 | &#x2705; | &#x274C; | &#x274C; |
+| 3.9 | &#x2705; | &#x2705; | &#x2705; |
+| 3.10 | &#x2705; | &#x274C; | &#x2705; |
+| 3.11 | &#x274C; | &#x274C; | &#x2705; |
+
+### Manually Install
 Installation of pyrtklib is very easy, just clone the code and install it.
 
 0. Dependencies
-   
-    We don't provide pre-compiled package so far, thus, this library will be compiled in time. (Looking forward one day it can be directly installed by pip!) It requires several dependencies, including gcc and cmake. If you are using on a MacOS, please first install gcc by brew and set the compiler path, because RTKLIB used GNU C features, which is hard to solve in clang. MSVC is not tested.
+
+    ~~We don't provide pre-compiled package so far, thus, this library will be compiled in time. (Looking forward one day it can be directly installed by pip!)~~ It requires several dependencies, including gcc and cmake. If you are using on a MacOS, please first install gcc by brew ~~and set the compiler path~~, because RTKLIB used GNU C features, which is hard to solve in clang. MSVC is not tested.
 1. Clone from github
 ```shell
 git clone git@github.com:IPNL-POLYU/pyrtklib.git

@@ -44,6 +44,7 @@ class BuildExt(build_ext):
                 gcc_path = '/'.join(subprocess.check_output(['which','gcc-13']).decode('utf8').split('/')[:-1])
                 cmake_args.append("-DCMAKE_C_COMPILER="+gcc_path+'/gcc-'+gcc_version)
                 cmake_args.append("-DCMAKE_CXX_COMPILER="+gcc_path+'/g++-'+gcc_version)
+                cmake_args.append("-DDARWIN=ON")
                 print("set gcc compiler successfully")
 
         build_args = [

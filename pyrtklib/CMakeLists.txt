@@ -17,7 +17,7 @@ include_directories(${PYBIND11_INCLUDE_DIRS})
 
 ADD_DEFINITIONS(-DENACMP -DENAGAL -DENAGLO -DTRACE -DDLL -DEBUG)
 set(CMAKE_VERBOSE_MAKEFILE ON)
-set(DEBUG OFF)
+# set(DEBUG OFF)
 set(LIBRARY OFF)
 add_compile_options(-fno-stack-protector)
 if(DEBUG)

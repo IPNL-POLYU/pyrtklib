@@ -35,11 +35,13 @@ class BuildExt(build_ext):
             "-DCMAKE_BUILD_TYPE=" + config,
             "-DPYTHON_INCLUDE_DIR="+pyinc
         ]
+        if self.debug:
+            cmake_args.append("-DDEBUG=ON")
 
         if os.sys.platform == "darwin":
                 gcc_version_output = subprocess.check_output(["brew", "list", "--versions", "gcc"])
                 gcc_version = gcc_version_output.decode("utf-8").split()[1].split('.')[0]
-                gcc_path = '/'.join(subprocess.check_output(['which','gcc-12']).decode('utf8').split('/')[:-1])
+                gcc_path = '/'.join(subprocess.check_output(['which','gcc-13']).decode('utf8').split('/')[:-1])
                 cmake_args.append("-DCMAKE_C_COMPILER="+gcc_path+'/gcc-'+gcc_version)
                 cmake_args.append("-DCMAKE_CXX_COMPILER="+gcc_path+'/g++-'+gcc_version)
                 print("set gcc compiler successfully")

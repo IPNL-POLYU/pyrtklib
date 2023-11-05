@@ -1457,13 +1457,6 @@ PYBIND11_MODULE(pyrtklib, m) {
     bindArr2D<float>(m,"float");
     bindArr1D<char>(m,"char");
     bindArr2D<char>(m,"char");
-	py::class_<Arr1D<char>>(m, "char")
-    	.def(py::init([](const std::string& s) {
-            auto* arr = new Arr1D<char>(s.size()+1);
-            std::memcpy(arr->src, s.data(), arr->len);
-            arr->src[arr->len] = '\0';  // Null-terminate the string
-            return arr;
-        }), "Constructor from Python str");
     bindArr1D<unsigned char>(m,"unsigned char");
     bindArr2D<unsigned char>(m,"unsigned char");
     bindArr1D<int>(m,"int");
@@ -1478,10 +1471,6 @@ PYBIND11_MODULE(pyrtklib, m) {
     bindArr2D<long>(m,"long");
     bindArr1D<unsigned long>(m,"unsigned long");
     bindArr2D<unsigned long>(m,"unsigned long");
-    bindArr1D<short>(m,"short");
-    bindArr2D<short>(m,"short");
-    bindArr1D<unsigned short>(m,"unsigned short");
-    bindArr2D<unsigned short>(m,"unsigned short");
     py::class_<gtime_t>(m,"gtime_t").def(py::init())
         .def_readwrite("time",&gtime_t::time)
         .def_readwrite("sec",&gtime_t::sec)

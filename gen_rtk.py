@@ -370,16 +370,8 @@ content += gen_defs(defines)
 # 	content += bindTemp%(k,k)
 for i in struct:
 	content += bindTemp%(i['name'],i['name'],i['name'],i['name'])
-for i in ['long double','double','float','char','unsigned char','int','unsigned int','short','unsigned short','long','unsigned long','short','unsigned short']:
+for i in ['long double','double','float','char','unsigned char','int','unsigned int','short','unsigned short','long','unsigned long']:
 	content += bindTemp%(i,i,i,i)
-	if i == "char":
-		content += '''	py::class_<Arr1D<char>>(m, "char")
-    	.def(py::init([](const std::string& s) {
-            auto* arr = new Arr1D<char>(s.size()+1);
-            std::memcpy(arr->src, s.data(), arr->len);
-            arr->src[arr->len] = '\\0';  // Null-terminate the string
-            return arr;
-        }), "Constructor from Python str");\n'''
 for i in struct:
 	content += gen_struct(i)
 for i in attrArr:

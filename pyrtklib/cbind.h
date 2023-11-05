@@ -93,7 +93,7 @@ class Arr2D{
 
 template<typename Type>
 void bindArr1D(py::module_& m, const std::string& typeName) {
-    py::class_<Arr1D<Type>>(m, ("Arr1D" + typeName).c_str())
+    auto cls = py::class_<Arr1D<Type>>(m, ("Arr1D" + typeName).c_str())
     .def(py::init([](int len){return std::unique_ptr<Arr1D<Type>>(new Arr1D<Type>(len));}))
     .def(py::init([](Type* src,int len){return std::unique_ptr<Arr1D<Type>>(new Arr1D<Type>((void*)src,len));}))
     .def("__len__",[](Arr1D<Type> &arr){return &arr.len;})
@@ -106,6 +106,16 @@ void bindArr1D(py::module_& m, const std::string& typeName) {
     .def_readonly("ptr",&Arr1D<Type>::src,py::return_value_policy::reference)
     .def("set",[](Arr1D<Type> &arr,Arr1D<Type> *nsrc){arr.src = (Type*)nsrc->src;})
     .def("print",[](Arr1D<Type> &arr){std::cout<<(arr.src)<<std::endl;});
+
+    if constexpr (std::is_same<Type, char>::value) {
+        cls.def(py::init([](const std::string& s) {
+                auto* arr = new Arr1D<char>(s.size()+1);
+                std::memcpy(arr->src, s.data(), s.size());
+                arr->src[s.size()] = '\0';  // Null-terminate the string
+                return arr;
+            }), py::arg("s"), "Constructor from Python str");
+    }
+
 }
 
 

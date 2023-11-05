@@ -103,12 +103,17 @@ def gen_struct(struct):
 	for i in struct['proper']:
 		dim = []
 		if len(i['dims']) == 1:
-			if i['dims'][0] == '':
+			if i['dims'][0] == '*':
 				dim.append('-1')
+				ttype = 'Arr1D'+'<'+i['type']+'>'
+				temp += '''        .def_property("%s",[](%s& o) {%s* tmp = new %s(%s);return tmp;},[](%s& o,Arr1D<%s>arr){o.%s=arr.src;},py::return_value_policy::reference)\n'''%(i['name'],name,ttype,ttype,"o."+i['name']+',-1',name,i['type'],i['name'])
 			else:
-				dim.append(i['dims'][0])
-			ttype = 'Arr1D'+'<'+i['type']+'>'
-			temp += structProperTemp%(i['name'],name,ttype,ttype,"o."+i['name']+','+dim[0])
+				if i['dims'][0] == '':
+					dim.append('-1')
+				else:
+					dim.append(i['dims'][0])
+				ttype = 'Arr1D'+'<'+i['type']+'>'
+				temp += structProperTemp%(i['name'],name,ttype,ttype,"o."+i['name']+','+dim[0])
 		else:
 			if i['dims'][0] == '':
 				dim.append('-1')
@@ -241,7 +246,7 @@ for e in elements:
 					proper['type'] = line.replace("const","",).replace('unsigned ','').strip().split(' ')[0]
 					proper['dims'] = []
 					if line.find('*') != -1:
-						proper['dims'].append('')
+						proper['dims'].append('*')
 						node['proper'].append(proper)
 					else:
 						node['member'].append(i[1].name)
@@ -382,7 +387,7 @@ for i in functionDouble:
 	content += gen_functionPointer(i)
 for i in function:
 	content += gen_func(i)
-content = content.replace('.def_readwrite("data",&obs_t::data)','.def_property_readonly("data",[](obs_t& o) {Arr1D<obsd_t>* tmp = new Arr1D<obsd_t>(o.data,-1);return tmp;},py::return_value_policy::reference)\n        .def("set_data",[](obs_t& o,Arr1D<obsd_t> *nsrc){o.data = nsrc->src;})')
-content = content.replace('.def_property_readonly("y",[](sbsigpband_t& o) {Arr1D<short>* tmp = new Arr1D<short>(o.y,-1);return tmp;},py::return_value_policy::reference)','.def_property_readonly("y",[](sbsigpband_t& o) {Arr1D<short>* tmp = new Arr1D<short>(const_cast<short*>(o.y),-1);return tmp;},py::return_value_policy::reference)')
+content = content.replace('new Arr1D<short>(o.y,-1)', 'new Arr1D<short>(const_cast<short*>(o.y),-1)')
+content = content.replace('strsvr_t& o,Arr1D<char>arr','strsvr_t& o,Arr1D<unsigned char>arr')
 with open('pyrtklib/pyrtklib.cpp','w') as f:
 	f.write(header+content+footer)

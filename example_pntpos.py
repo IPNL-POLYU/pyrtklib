@@ -2,17 +2,6 @@ from pyrtklib import *
 import pandas as pd
 import numpy as np
 
-freq = {}
-freq['G'] = [FREQ1,FREQ2]
-freq['R'] = [FREQ1_GLO,FREQ2_GLO]
-freq['E'] = [FREQ1,FREQ7]
-freq['C'] = [FREQ1_CMP,FREQ2_CMP]
-freq['J'] = [FREQ1,FREQ2]
-
-def lam_ratio_sqr(f):
-    lam1 = CLIGHT/FREQ1
-    lam2 = CLIGHT/f
-    return (lam1/lam2)**2
 
 def nextobsf(obs,i):
     n = 0
@@ -48,14 +37,28 @@ def get_sat_pos(obsd,n,nav):
             j+=1
     return nrs,noeph
 
-def get_pnt(obs,i,nav,prcopt):
+def split_obs(obs):
+    i = 0
+    m = nextobsf(obs,i)
+    obss = []
+    while m!=0:
+        tmp_obs = obs_t()
+        tmp_obs.data = obs.data[i:i+m]
+        tmp_obs.n = m
+        tmp_obs.nmax = m
+        i+=m
+        obss.append(tmp_obs)
+        m = nextobsf(obs,i)
+    return obss
+    
+def get_obs_pnt(obs,nav,prcopt):
+    m = obs.n
     sol = sol_t()
     sat = Arr1Dssat_t(MAXSAT)
-    m = nextobsf(obs,i)
-    sol.time = obs.data[i].time
+    sol.time = obs.data[0].time
     msg = Arr1Dchar(100)
     azel = Arr1Ddouble(m*2)
-    pntpos(obs.data[i:i+m].ptr,m,nav,prcopt,sol,azel,sat.ptr,msg)
+    pntpos(obs.data.ptr,obs.n,nav,prcopt,sol,azel,sat.ptr,msg)
     return sol,sat,azel,msg
 
 traceopen('test.log')
@@ -66,10 +69,6 @@ tracelevel(4)
 files = [
     '/home/hrz/project/rtk/v_rtk/data/KLB/F9P_211203_061807.obs',
     "/home/hrz/project/rtk/v_rtk/data/KLB/BRDC00IGS_R_20213370000_01D_MN.rnx"
-    # 'data/KLB/hksc337h.21b',
-    # 'data/KLB/hksc337h.21n',
-    # 'data/KLB/hksc337h.21g',
-    # 'data/KLB/hksc337h.21l',
 ]
 obs = obs_t()
 nav = nav_t()
@@ -84,7 +83,7 @@ uniqnav(nav)
 
 
 data = []
-
+obss = split_obs(obs)
 prcopt.mode = PMODE_KINEMA
 prcopt.navsys = SYS_ALL
 prcopt.soltype = 0
@@ -97,10 +96,8 @@ prcopt.sateph = EPHOPT_BRDC
 prcopt.modear = 3 #fix and hold
 
 index = 0
-m = nextobsf(obs,index)
-while m != 0:
-    rs, noeph = get_sat_pos(obs.data[index:index+m],m,nav)
-    sol,sat,azel,msg = get_pnt(obs,index,nav,prcopt)
+for o in obss:
+    sol,sat,azel,msg = get_obs_pnt(o,nav,prcopt)
     if msg[0] == "no observation data":
         break
     ecef = Arr1Ddouble(3)
@@ -110,7 +107,4 @@ while m != 0:
     pos = Arr1Ddouble(3)
     ecef2pos(ecef,pos)
     print(sol.time.time,*(np.array(pos[:2])*R2D),pos[2])
-    #print(sol.time.time+sol.time.sec)
-    m = nextobsf(obs,index)
-    index+=m
 print('done')

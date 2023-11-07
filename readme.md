@@ -14,9 +14,9 @@ I found that there is a more recent branch on rtklib, thus I update the rtklib t
   * free_cmr
   * update_cmr
 * And these files are deleted
-  * delete pyrtklib5/rtksrc/qzslex.c
-  * delete pyrtklib5/rtksrc/rcv/gw10.c
-  * delete pyrtklib5/rtksrc/rcv/rcvlex.c
+  * delete pyrtklib/rtksrc/qzslex.c
+  * delete pyrtklib/rtksrc/rcv/gw10.c
+  * delete pyrtklib/rtksrc/rcv/rcvlex.c
 
 ### 2023.11.05 v0.2.3 Bug fix and code optimization
 

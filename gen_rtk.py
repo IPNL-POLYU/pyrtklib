@@ -208,12 +208,17 @@ DEFINE = ['ENACMP','ENAGAL','ENAGLO']
 with open('pyrtklib/rtksrc/rtklib.h','r') as f:
 	src = f.read()
 defines = getDefine(src,DEFINE)
+defines.append(['VER_RTKLIB','"2.4.3"'])
+defines.append(['PATCH_LEVEL','"b34"'])
 src = remover(src)
 rec = re.compile('extern "C" {(.*)}',re.DOTALL)
 src = rec.findall(src)[0]
-src = src.replace('"Copyright (C) 2007-2018 by T.Takasu\\n',"")
+src = src.replace('"Copyright (C) 2007-2020 T.Takasu\\n',"")
 src = src.replace('All rights reserved."',"")
-src = "typedef long time_t;\ntypedef long lock_t;\ntypedef long thread_t;\ntypedef long FILE;\n"+src
+src = src.replace('EXPORT void add_fatal(fatalfunc_t *func);',"")
+src = src.replace('typedef void fatalfunc_t(const char *);',"")
+src = src.replace('EXPORT','extern')
+src = "typedef long time_t;\ntypedef long lock_t;\ntypedef long thread_t;\ntypedef long FILE;\ntypedef unsigned char uint8_t;\ntypedef unsigned short int uint16_t;\ntypedef unsigned int uint32_t;\ntypedef short int int16_t;\ntypedef int int32_t;\n"+src
 src = re.sub('\\n+','\\n',re.sub(' \\n','\\n',src).strip())
 parser = pycparser.CParser()
 ast = parser.parse(src)

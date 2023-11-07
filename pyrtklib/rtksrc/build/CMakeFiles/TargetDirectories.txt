@@ -1,6 +1,0 @@
-/home/hrz/project/RTKLIB/src/build/CMakeFiles/rebuild_cache.dir
-/home/hrz/project/RTKLIB/src/build/CMakeFiles/edit_cache.dir
-/home/hrz/project/RTKLIB/src/build/CMakeFiles/rtk.dir
-/home/hrz/project/RTKLIB/src/build/rcv/CMakeFiles/rebuild_cache.dir
-/home/hrz/project/RTKLIB/src/build/rcv/CMakeFiles/edit_cache.dir
-/home/hrz/project/RTKLIB/src/build/rcv/CMakeFiles/rcv.dir

@@ -2,12 +2,25 @@
 
 ## News
 
+
+### 2023.11.07 v0.2.4 Update the rtklib to 2.4.3 b34
+
+I found that there is a more recent branch on rtklib, thus I update the rtklib to 2.4.3 b34.
+
+* The support number of Beidou up to 63
+* No implementation functions are deleted. I don't know why they remain in the source code.
+  * readfcb
+  * init_cmr
+  * free_cmr
+  * update_cmr
+
+
 ### 2023.11.05 v0.2.3 Bug fix and code optimization
 
 This version contains follow updates:
 
 1. Using template binding functions to replace binding macros.
-2. Arr1Dchar now has an own constructor to be constructed from a python string.
+2. Arr1Dchar now has an own constructor and can be constructed from a python string.
    ```python
    output_path = Arr1Dchar("pyexample_output.txt")
    ```
@@ -21,7 +34,7 @@ This version contains follow updates:
    ```
    But it's not recommended to do so, because this may lead memory leakage. Many pointers in rtklib may refer to anther variable, thus, call free() to directly clear it may cause other problems. Please make sure you won't modify it too often.
 4. obs.set_data() has been removed.
-5. "FILE*" params in function (input_ubxf, input_rawf e.g.) is devided into "const char *filename, const char *mode", the file open operation will be processed in the overloaded function. 
+5. "FILE*" params in functions (input_ubxf, input_rawf e.g.) is devided into "const char *filename, const char *mode", the file open operation will be processed in the overloaded function. Here is an example.
    ```python
    raw = raw_t()
    ret = input_rawt(raw,STRFMT_UBX,Arr1Dchar("example.ubx"),Arr1Dchar("rb"))
@@ -44,6 +57,20 @@ This is a Python binding for [RTKLIB](https://github.com/tomojitakasu/RTKLIB), t
 If you want to use the rtklib deeply, please refer to the [point position example](https://github.com/IPNL-POLYU/pyrtklib/blob/main/example_pntpos.py).
 
 If you just need the result, please refer to the [post position example](https://github.com/IPNL-POLYU/pyrtklib/blob/main/example_postpos.py).
+
+**If you want to use the rtklib version based on [rtklibexplorer/rtklib_demo5](https://github.com/rtklibexplorer/RTKLIB), please refer to [pyrtklib_demo5](https://github.com/IPNL-POLYU/pyrtklib_demo5).**
+
+### Why pyrtklib?
+
+| Project | [pyrtklib](https://github.com/IPNL-POLYU/pyrtklib) | [rtklib-py](https://github.com/rtklibexplorer/rtklib-py) | [pyRTKLib](https://github.com/alainmuls/pyRTKLib/) |
+| :----: | :----: | :----: | :----: |
+| Author  | Runzhi Hu | Tim Everett | Alain Muls|
+| Implementation Method| C++ with pybind11 | Pure python | Directly use rtklib binary |
+| pros    | All functions and structures in rtklib are available.| Modern and easy interface| easy to plot |
+| cons | Interfaces are in C style, need further wrapping for convenience | No support for BDS, and only supports PPK solutions currently.| More focus on plotting, can't be used for deep process of positioning |
+| Installation| pip install | git clone | git clone|
+
+
 <table>
 <tr sytle="font-size:10px">
 <td width='50%' style="vertical-align:top;">

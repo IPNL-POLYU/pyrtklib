@@ -2,6 +2,11 @@
 
 ## News
 
+### 2024.07.08 v0.2.6 Bug fix
+
+* The attributions about PRNQZS and PRNIRN are set to the right number now.
+* In cbind.h, I forgot to allocate one more byte for string to store '\0', thus segmentation fault may occur in function "convertChar" (I met several times). Besides, in convertType, the copy size is not correct and only the first object is copied. All the bugs now have been fixed.
+
 ### 2023.11.23 v0.2.5 Optimize the folder structure
 
 In previous versions, the .so file is directly in site-packages folder, which is disgusting. To let the code editor can make use of the .pyi, the .so file is moved, and is loaded by the init.py file now.

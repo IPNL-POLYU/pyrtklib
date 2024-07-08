@@ -138,18 +138,18 @@ void bindArr2D(py::module_& m, const std::string& typeName) {
 char **convertChar(std::vector<std::string> str){
     char **tmp = (char**)calloc(str.size(),sizeof(char*));
     for(int i=0;i<str.size();i++){
-        tmp[i] = (char*)calloc(strlen(str[i].c_str()),sizeof(char));
+        tmp[i] = (char*)calloc(strlen(str[i].c_str())+1,sizeof(char));
         strcpy(tmp[i],str[i].c_str());
     }
     return tmp;
 }
 
 template<class T>
-T **convertType(std::vector<std::vector<T>> obj){
-    T **tmp = (T**)calloc(obj.size(),sizeof(T**));
-    for(int i = 0;i < obj.size();i++){
-        tmp[i] = (T*)calloc(obj[i].size(),sizeof(T));
-        memcpy(tmp[i],obj[i].data(),obj[i].size());
+T **convertType(const std::vector<std::vector<T>>& obj) {
+    T **tmp = (T**)calloc(obj.size(), sizeof(T*));
+    for (size_t i = 0; i < obj.size(); i++) {
+        tmp[i] = (T*)calloc(obj[i].size(), sizeof(T)); 
+        memcpy(tmp[i], obj[i].data(), obj[i].size() * sizeof(T));
     }
     return tmp;
 }

@@ -1034,7 +1034,7 @@ extern void dl_test(gtime_t ts, gtime_t te, double ti, const url_t *urls, int nu
 }
 PYBIND11_MODULE(pyrtklib, m) {
     m.doc() = "rtklib python interface by pybind11";
-	m.attr("NULL") = __null;
+	//m.attr("NULL") = __null;
     m.attr("PI")=3.1415926535897932;
     m.attr("D2R")=(PI/180.0);
     m.attr("R2D")=(180.0/PI);

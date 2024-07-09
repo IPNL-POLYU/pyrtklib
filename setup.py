@@ -39,18 +39,33 @@ class BuildExt(build_ext):
             cmake_args.append("-DDEBUG=ON")
 
         if os.sys.platform == "darwin":
-                gcc_version_output = subprocess.check_output(["brew", "list", "--versions", "gcc"])
-                gcc_version = gcc_version_output.decode("utf-8").split()[1].split('.')[0]
-                gcc_path = '/'.join(subprocess.check_output(['which','gcc-13']).decode('utf8').split('/')[:-1])
-                cmake_args.append("-DCMAKE_C_COMPILER="+gcc_path+'/gcc-'+gcc_version)
-                cmake_args.append("-DCMAKE_CXX_COMPILER="+gcc_path+'/g++-'+gcc_version)
+                #gcc_version_output = subprocess.check_output(["brew", "list", "--versions", "gcc"])
+                #gcc_version = gcc_version_output.decode("utf-8").split()[1].split('.')[0]
+                #gcc_path = '/'.join(subprocess.check_output(['which','gcc-13']).decode('utf8').split('/')[:-1])
+                #cmake_args.append("-DCMAKE_C_COMPILER="+gcc_path+'/gcc-'+gcc_version)
+                #cmake_args.append("-DCMAKE_CXX_COMPILER="+gcc_path+'/g++-'+gcc_version)
                 cmake_args.append("-DDARWIN=ON")
-                print("set gcc compiler successfully")
+                print("macos config successfully")
 
-        build_args = [
-            "--config", config,
-            "--", "-j8"
-        ]
+        if os.name == "nt":
+            cmake_args += [
+                "-DCMAKE_GENERATOR=Visual Studio 16 2019",  # or your specific Visual Studio version
+                "-A", "x64",  # or your specific architecture
+                "-DCMAKE_C_FLAGS_RELEASE=/MT",
+                "-DCMAKE_CXX_FLAGS_RELEASE=/MT",
+                "-DWIN32=ON",
+                "-DCMAKE_CXX_FLAGS=/bigobj /DWIN32",  # 添加 /bigobj 和 /DWIN32 选项
+                "-DCMAKE_C_FLAGS=/bigobj /DWIN32",  # 添加 /bigobj 和 /DWIN32 选项
+                "-DCMAKE_EXE_LINKER_FLAGS=/bigobj",  # 添加 /bigobj 选项
+                "-DCMAKE_SHARED_LINKER_FLAGS=/bigobj",  # 添加 /bigobj 选项
+                "-DADDITIONAL_LIBRARIES=winmm;ws2_32"
+            ]
+            print("Windows config successfully")
+
+        build_args = ["--config", config]
+
+        if os.name != "nt":
+            build_args += ["--", "-j8"]
 
         os.chdir(build_temp)
         self.spawn(["cmake", f"{str(cwd)}/{ext.name}"] + cmake_args)

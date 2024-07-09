@@ -76,6 +76,8 @@ jobs:
     - name: Print cibuildwheel build identifiers
       run: |
         python -m cibuildwheel --print-build-identifiers
+      env:
+        CIBW_ARCHS_MACOS: ${{ matrix.os == 'macos-latest' && 'universal2' || '' }}
     # - name: Check CIBW_BUILD
     #   run: echo "CIBW_BUILD=${{ matrix.cibw-build }}"
     # - name: Build wheels

@@ -16,9 +16,9 @@ jobs:
     strategy:
       matrix:
         include:
-          - os: ubuntu-latest
-            python-version: 3.6
-            cibw-build: cp36-manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python-version: 3.6
+          #   cibw-build: cp36-manylinux_x86_64
           - os: ubuntu-latest
             python-version: 3.7
             cibw-build: cp37-manylinux_x86_64

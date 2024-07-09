@@ -10,9 +10,9 @@ on:
   #     - macostest
 
 jobs:
-  build-wheels:
-    name: Build wheels on ${{ matrix.os }}
+  build:
     runs-on: ${{ matrix.os }}
+
     strategy:
       matrix:
         include:
@@ -34,18 +34,18 @@ jobs:
           - os: ubuntu-latest
             python-version: 3.11
             cibw-build: cp311-manylinux_x86_64
-          # - os: macos-latest
-          #   python-version: 3.8
-          #   cibw-build: cp38-macosx_universal2
-          # - os: macos-latest
-          #   python-version: 3.9
-          #   cibw-build: cp39-macosx_universal2
-          # - os: macos-latest
-          #   python-version: 3.10
-          #   cibw-build: cp310-macosx_universal2
-          # - os: macos-latest
-          #   python-version: 3.11
-          #   cibw-build: cp311-macosx_universal2
+          - os: macos-latest
+            python-version: 3.8
+            cibw-build: cp38-macosx_universal2
+          - os: macos-latest
+            python-version: 3.9
+            cibw-build: cp39-macosx_universal2
+          - os: macos-latest
+            python-version: 3.10
+            cibw-build: cp310-macosx_universal2
+          - os: macos-latest
+            python-version: 3.11
+            cibw-build: cp311-macosx_universal2
           - os: windows-latest
             python-version: 3.6
             cibw-build: cp36-win_amd64
@@ -66,26 +66,14 @@ jobs:
             cibw-build: cp311-win_amd64
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-
-      - name: Install cibuildwheel
-        run: python -m pip install cibuildwheel==2.3.0
-
-      - name: Build wheels
-        run: python -m cibuildwheel --output-dir wheelhouse
-        env:
-          CIBW_BUILD: ${{ matrix.cibw-build }}
-          CIBW_BEFORE_BUILD: pip install cmake
-          CIBW_TEST_COMMAND: "python -m unittest discover tests"
-
-      - name: Upload wheels
-        uses: actions/upload-artifact@v2
-        with:
-          name: wheels
-          path: ./wheelhouse/*.whl
+    - uses: actions/checkout@v2
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install cibuildwheel
+      run: python -m pip install cibuildwheel
+    - name: Build wheels
+      run: cibuildwheel --output-dir wheelhouse
+      env:
+        CIBW_BUILD: ${{ matrix.cibw-build }}

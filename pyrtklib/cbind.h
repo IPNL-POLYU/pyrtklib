@@ -98,7 +98,7 @@ void bindArr1D(py::module_& m, const std::string& typeName) {
     .def(py::init([](Type* src,int len){return std::unique_ptr<Arr1D<Type>>(new Arr1D<Type>((void*)src,len));}))
     .def("__len__",[](Arr1D<Type> &arr){return &arr.len;})
     .def("__getitem__",[](Arr1D<Type> &arr,int i){return arr.src+i;},py::return_value_policy::reference)
-    .def("__getitem__",[](Arr1D<Type> &arr,py::slice slice){long start,stop,step;PySlice_Unpack(slice.ptr(),&start,&stop,&step);return new Arr1D<Type>(arr.src+start,stop-start);},py::return_value_policy::reference)
+    .def("__getitem__",[](Arr1D<Type> &arr,py::slice slice){Py_ssize_t start,stop,step;PySlice_Unpack(slice.ptr(),&start,&stop,&step);return new Arr1D<Type>(arr.src+start,stop-start);},py::return_value_policy::reference)
     .def("__setitem__",[](Arr1D<Type> &arr,int i, Type v){arr.src[i]=v;})
     .def("__iter__",[](Arr1D<Type> &arr){return pybind11::make_iterator(arr.src,arr.src+arr.len);})
     .def("deepcopy",static_cast<Arr1D<Type>*(Arr1D<Type>::*)()>(&Arr1D<Type>::deepcopy))

@@ -58,8 +58,7 @@ class BuildExt(build_ext):
                 "-DCMAKE_C_FLAGS=/bigobj /DWIN32",  # 添加 /bigobj 和 /DWIN32 选项
                 "-DCMAKE_EXE_LINKER_FLAGS=/bigobj",  # 添加 /bigobj 选项
                 "-DCMAKE_SHARED_LINKER_FLAGS=/bigobj",  # 添加 /bigobj 选项
-                "-DCMAKE_CXX_STANDARD_LIBRARIES=winmm.lib;ws2_32.lib",  # 链接 winmm.lib 和 ws2_32.lib
-                "-DCMAKE_C_STANDARD_LIBRARIES=winmm.lib;ws2_32.lib"  # 链接 winmm.l
+                "-DADDITIONAL_LIBRARIES=winmm;ws2_32"
             ]
             print("Windows config successfully")
 

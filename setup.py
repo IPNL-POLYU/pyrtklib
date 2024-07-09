@@ -53,7 +53,9 @@ class BuildExt(build_ext):
                 "-A", "x64",  # or your specific architecture
                 "-DCMAKE_C_FLAGS_RELEASE=/MT",
                 "-DCMAKE_CXX_FLAGS_RELEASE=/MT",
-                "-DWIN32=ON"
+                "-DWIN32=ON",
+                "-DCMAKE_CXX_FLAGS=/bigobj",  # 添加 /bigobj 选项
+                "-DCMAKE_C_FLAGS=/bigobj"  # 添加 /bigobj 选项
             ]
             print("Windows config successfully")
 

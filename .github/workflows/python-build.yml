@@ -43,9 +43,12 @@ jobs:
           # - os: macos-latest
           #   python-version: "3.10"
           #   cibw-build: cp310-macosx_universal2
-          - os: macos-latest
+          - os: macos-14
             python-version: 3.11
-            cibw-build: cp311-macosx_universal2
+            cibw-build: cp311-macosx_arm64
+          - os: macos-13
+            python-version: 3.11
+            cibw-build: cp311-macosx_x86_64
           # - os: windows-2019
           #   python-version: 3.6
           #   cibw-build: cp36-win_amd64
@@ -84,4 +87,3 @@ jobs:
       run: cibuildwheel --output-dir wheelhouse
       env:
         CIBW_BUILD: ${{ matrix.cibw-build }}
-        CIBW_ARCHS_MACOS: ${{ matrix.os == 'macos-latest' && 'x86_64 universal2 arm64' || '' }}

@@ -16,24 +16,24 @@ jobs:
     strategy:
       matrix:
         include:
+              # - os: ubuntu-latest
+              #   python-version: 3.6
+              #   cibw-build: cp36-manylinux_x86_64
           # - os: ubuntu-latest
-          #   python-version: 3.6
-          #   cibw-build: cp36-manylinux_x86_64
-          - os: ubuntu-latest
-            python-version: 3.7
-            cibw-build: cp37-manylinux_x86_64
-          - os: ubuntu-latest
-            python-version: 3.8
-            cibw-build: cp38-manylinux_x86_64
-          - os: ubuntu-latest
-            python-version: 3.9
-            cibw-build: cp39-manylinux_x86_64
-          - os: ubuntu-latest
-            python-version: "3.10"
-            cibw-build: cp310-manylinux_x86_64
-          - os: ubuntu-latest
-            python-version: 3.11
-            cibw-build: cp311-manylinux_x86_64
+          #   python-version: 3.7
+          #   cibw-build: cp37-manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python-version: 3.8
+          #   cibw-build: cp38-manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python-version: 3.9
+          #   cibw-build: cp39-manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python-version: "3.10"
+          #   cibw-build: cp310-manylinux_x86_64
+          # - os: ubuntu-latest
+          #   python-version: 3.11
+          #   cibw-build: cp311-manylinux_x86_64
           # - os: macos-latest
           #   python-version: 3.8
           #   cibw-build: cp38-macosx_universal2

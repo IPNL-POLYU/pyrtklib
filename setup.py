@@ -47,6 +47,16 @@ class BuildExt(build_ext):
                 cmake_args.append("-DDARWIN=ON")
                 print("macos config successfully")
 
+        if os.name == "nt":
+            cmake_args += [
+                "-DCMAKE_GENERATOR=Visual Studio 16 2019",  # or your specific Visual Studio version
+                "-A", "x64",  # or your specific architecture
+                "-DCMAKE_C_FLAGS_RELEASE=/MT",
+                "-DCMAKE_CXX_FLAGS_RELEASE=/MT",
+                "-DWIN32=ON"
+            ]
+            print("Windows config successfully")
+
         build_args = [
             "--config", config,
             "--", "-j8"

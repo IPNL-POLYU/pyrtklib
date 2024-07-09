@@ -73,9 +73,12 @@ jobs:
         python-version: ${{ matrix.python-version }}
     - name: Install cibuildwheel
       run: python -m pip install cibuildwheel
-    - name: Check CIBW_BUILD
-      run: echo "CIBW_BUILD=${{ matrix.cibw-build }}"
-    - name: Build wheels
-      run: cibuildwheel --output-dir wheelhouse
-      env:
-        CIBW_BUILD: ${{ matrix.cibw-build }}
+    - name: Print cibuildwheel build identifiers
+      run: |
+        python -m cibuildwheel --print-build-identifiers
+    # - name: Check CIBW_BUILD
+    #   run: echo "CIBW_BUILD=${{ matrix.cibw-build }}"
+    # - name: Build wheels
+    #   run: cibuildwheel --output-dir wheelhouse
+    #   env:
+    #     CIBW_BUILD: ${{ matrix.cibw-build }}

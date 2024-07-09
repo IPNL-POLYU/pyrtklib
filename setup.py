@@ -57,10 +57,10 @@ class BuildExt(build_ext):
             ]
             print("Windows config successfully")
 
-        build_args = [
-            "--config", config,
-            "--", "-j8"
-        ]
+        build_args = ["--config", config]
+
+        if os.name != "nt":
+            build_args += ["--", "-j8"]
 
         os.chdir(build_temp)
         self.spawn(["cmake", f"{str(cwd)}/{ext.name}"] + cmake_args)

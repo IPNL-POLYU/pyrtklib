@@ -91,7 +91,7 @@ jobs:
       id: get_version
       run: |
         VERSION=$(python setup.py --version)
-        echo ::set-output name=VERSION::$VERSION
+        echo "name=VERSION::$VERSION" >> $GITHUB_OUTPUT
 
     - name: Create GitHub release
       id: create_release

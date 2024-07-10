@@ -86,8 +86,18 @@ jobs:
       run: cibuildwheel --output-dir wheelhouse
       env:
         CIBW_BUILD: ${{ matrix.cibw-build }}
-    - name: Upload wheels
-      uses: actions/upload-artifact@v2
+    # - name: Upload wheels
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: python-wheels
+    #     path: wheelhouse/*.whl
+    - name: Upload wheels to release assets
+      uses: ncipollo/release-action@v1
       with:
-        name: python-wheels
-        path: wheelhouse/*.whl
+        artifacts: 'wheelhouse/*.whl'
+        token: ${{ secrets.GITHUB_TOKEN }}
+        tag: ${{ github.ref }}
+        name: Release ${{ github.ref }}
+        body: "Automated release by GitHub Actions."
+        draft: false
+        prerelease: false

@@ -1,4 +1,4 @@
-name: Build and Test Wheels
+name: Build and Upload to pypi
 
 on:
   workflow_dispatch:

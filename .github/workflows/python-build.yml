@@ -86,17 +86,29 @@ jobs:
       run: cibuildwheel --output-dir wheelhouse
       env:
         CIBW_BUILD: ${{ matrix.cibw-build }}
-    - name: Get the current tag name
-      id: get_tag_name
-      run: echo ::set-output name=TAG_NAME::${GITHUB_REF#refs/tags/}
+    
+    - name: Get version from setup.py
+      id: get_version
+      run: |
+        VERSION=$(python setup.py --version)
+        echo ::set-output name=VERSION::$VERSION
 
-    - name: Upload wheels to release assets
-      uses: ncipollo/release-action@v1
+    - name: Create GitHub release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        artifacts: 'wheelhouse/*.whl'
-        token: ${{ secrets.GITHUB_TOKEN }}
-        tag: ${{ steps.get_tag_name.outputs.TAG_NAME }}
-        name: Release ${{ steps.get_tag_name.outputs.TAG_NAME }}
+        tag_name: ${{ steps.get_version.outputs.VERSION }}
+        release_name: Release ${{ steps.get_version.outputs.VERSION }}
         body: "Automated release by GitHub Actions."
         draft: false
         prerelease: false
+
+    - name: Upload wheels to release assets
+      uses: actions/upload-release-asset@v1
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: wheelhouse/*.whl
+        asset_name: ${{ matrix.os }}-wheels
+        asset_content_type: application/zip

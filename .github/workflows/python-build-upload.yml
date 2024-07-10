@@ -86,6 +86,7 @@ jobs:
       run: cibuildwheel --output-dir wheelhouse
       env:
         CIBW_BUILD: ${{ matrix.cibw-build }}
+    
     - name: Get the current tag name
       id: get_tag_name
       run: echo ::set-output name=TAG_NAME::${GITHUB_REF#refs/tags/}

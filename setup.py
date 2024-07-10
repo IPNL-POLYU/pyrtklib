@@ -49,7 +49,7 @@ class BuildExt(build_ext):
 
         if os.name == "nt":
             cmake_args += [
-                "-DCMAKE_GENERATOR=Visual Studio 16 2019",  # or your specific Visual Studio version
+                "-DCMAKE_GENERATOR=Visual Studio 17 2022",  # or your specific Visual Studio version
                 "-A", "x64",  # or your specific architecture
                 "-DCMAKE_C_FLAGS_RELEASE=/MT",
                 "-DCMAKE_CXX_FLAGS_RELEASE=/MT",
@@ -59,8 +59,8 @@ class BuildExt(build_ext):
                 "-DCMAKE_EXE_LINKER_FLAGS=/bigobj",  # 添加 /bigobj 选项
                 "-DCMAKE_SHARED_LINKER_FLAGS=/bigobj",  # 添加 /bigobj 选项
                 "-DADDITIONAL_LIBRARIES=winmm;ws2_32",
-                "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${CMAKE_BINARY_DIR}",
-                "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=${CMAKE_BINARY_DIR}"
+                #"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY=${CMAKE_BINARY_DIR}",
+                #"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=${CMAKE_BINARY_DIR}"
             ]
             print("Windows config successfully")
 

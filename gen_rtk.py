@@ -167,7 +167,7 @@ def gen_multidef(funcs):
 	for j in i['sconvert']:
 		tmp += "    %s *%s = S%s.src;\n"%(j[0],j[1],j[1])
 	if i['fconvert']:
-		tmp += '	FILE *fp = fopen(Ffp,mode);\n'
+		tmp += '	FILE *fp = Ffp.file;\n'
 	params = re.findall("\(.*\)",i['src'])[0].lstrip('(').rstrip(')')
 	params = params.split(',')
 	p = []
@@ -179,14 +179,16 @@ def gen_multidef(funcs):
 		for j in i['dconvert']:
 			tmp += '    free(%s);\n'%j[1]
 		if i['fconvert']:
-			tmp += '	fclose(fp);\n'
+			#tmp += '	fclose(fp);\n'
+			pass
 		tmp += "    return tmp;\n}\n"
 	else:
 		tmp += "    %s(%s);\n"%(i['name'],params)
 		for j in i['dconvert']:
 			tmp += '    free(%s);\n'%j[1]
 		if i['fconvert']:
-			tmp += '	fclose(fp);\n'
+			#tmp += '	fclose(fp);\n'
+			pass
 		tmp += "\n}\n"
 	return tmp
 
@@ -311,7 +313,7 @@ for e in elements:
 					ddp = params.split(',')
 					for k in ddp:
 						if k.find("FILE") != -1:
-							lll = lll.replace("FILE *fp","const char *Ffp, const char *mode")
+							lll = lll.replace("FILE *fp","FileWrapper &Ffp")
 							proper['fconvert'] = True
 							F += 1
 							continue
@@ -394,5 +396,5 @@ for i in function:
 	content += gen_func(i)
 content = content.replace('new Arr1D<short>(o.y,-1)', 'new Arr1D<short>(const_cast<short*>(o.y),-1)')
 content = content.replace('strsvr_t& o,Arr1D<char>arr','strsvr_t& o,Arr1D<unsigned char>arr')
-with open('pyrtklib/pyrtklib.cpp','w') as f:
+with open('pyrtklib/pyrtklib_pre.cpp','w') as f:
 	f.write(header+content+footer)

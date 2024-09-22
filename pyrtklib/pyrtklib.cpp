@@ -1032,7 +1032,200 @@ extern void dl_test(gtime_t ts, gtime_t te, double ti, const url_t *urls, int nu
 	fclose(fp);
 
 }
+extern void matfprint(Arr1D<double> SA, int n, int m, int p, int q, FileWrapper &Ffp){
+    const double *A = SA.src;
+	FILE *fp = Ffp.file;
+    matfprint(A, n, m, p, q, fp);
+
+}
+extern int outrnxobsh(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxobsh(fp, opt, nav);
+    return tmp;
+}
+extern int outrnxobsb(FileWrapper &Ffp, const rnxopt_t *opt, const obsd_t *obs, int n, int epflag){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxobsb(fp, opt, obs, n, epflag);
+    return tmp;
+}
+extern int outrnxnavh (FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxnavh(fp, opt, nav);
+    return tmp;
+}
+extern int outrnxgnavh(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxgnavh(fp, opt, nav);
+    return tmp;
+}
+extern int outrnxhnavh(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxhnavh(fp, opt, nav);
+    return tmp;
+}
+extern int outrnxlnavh(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxlnavh(fp, opt, nav);
+    return tmp;
+}
+extern int outrnxqnavh(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxqnavh(fp, opt, nav);
+    return tmp;
+}
+extern int outrnxcnavh(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxcnavh(fp, opt, nav);
+    return tmp;
+}
+extern int outrnxinavh(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxinavh(fp, opt, nav);
+    return tmp;
+}
+extern int outrnxnavb (FileWrapper &Ffp, const rnxopt_t *opt, const eph_t *eph){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxnavb(fp, opt, eph);
+    return tmp;
+}
+extern int outrnxgnavb(FileWrapper &Ffp, const rnxopt_t *opt, const geph_t *geph){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxgnavb(fp, opt, geph);
+    return tmp;
+}
+extern int outrnxhnavb(FileWrapper &Ffp, const rnxopt_t *opt, const seph_t *seph){
+	FILE *fp = Ffp.file;
+    auto tmp = outrnxhnavb(fp, opt, seph);
+    return tmp;
+}
+extern int  open_rnxctr (rnxctr_t *rnx, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = open_rnxctr(rnx, fp);
+    return tmp;
+}
+extern int  input_rnxctr(rnxctr_t *rnx, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_rnxctr(rnx, fp);
+    return tmp;
+}
+extern int input_rawf (raw_t *raw, int format, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_rawf(raw, format, fp);
+    return tmp;
+}
+extern int input_oem4f (raw_t *raw, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_oem4f(raw, fp);
+    return tmp;
+}
+extern int input_oem3f (raw_t *raw, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_oem3f(raw, fp);
+    return tmp;
+}
+extern int input_ubxf  (raw_t *raw, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_ubxf(raw, fp);
+    return tmp;
+}
+extern int input_ss2f  (raw_t *raw, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_ss2f(raw, fp);
+    return tmp;
+}
+extern int input_cresf (raw_t *raw, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_cresf(raw, fp);
+    return tmp;
+}
+extern int input_stqf  (raw_t *raw, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_stqf(raw, fp);
+    return tmp;
+}
+extern int input_javadf(raw_t *raw, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_javadf(raw, fp);
+    return tmp;
+}
+extern int input_nvsf  (raw_t *raw, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_nvsf(raw, fp);
+    return tmp;
+}
+extern int input_bnxf  (raw_t *raw, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_bnxf(raw, fp);
+    return tmp;
+}
+extern int input_rt17f (raw_t *raw, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_rt17f(raw, fp);
+    return tmp;
+}
+extern int input_sbff  (raw_t *raw, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_sbff(raw, fp);
+    return tmp;
+}
+extern int input_rtcm2f(rtcm_t *rtcm, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_rtcm2f(rtcm, fp);
+    return tmp;
+}
+extern int input_rtcm3f(rtcm_t *rtcm, FileWrapper &Ffp){
+	FILE *fp = Ffp.file;
+    auto tmp = input_rtcm3f(rtcm, fp);
+    return tmp;
+}
+extern void outprcopt(FileWrapper &Ffp, const prcopt_t *opt){
+	FILE *fp = Ffp.file;
+    outprcopt(fp, opt);
+
+}
+extern void outsolhead(FileWrapper &Ffp, const solopt_t *opt){
+	FILE *fp = Ffp.file;
+    outsolhead(fp, opt);
+
+}
+extern void outsol  (FileWrapper &Ffp, const sol_t *sol,Arr1D<double> Srb, const solopt_t *opt){
+    const double *rb = Srb.src;
+	FILE *fp = Ffp.file;
+    outsol(fp, sol, rb, opt);
+
+}
+extern void outsolex(FileWrapper &Ffp, const sol_t *sol, const ssat_t *ssat, const solopt_t *opt){
+	FILE *fp = Ffp.file;
+    outsolex(fp, sol, ssat, opt);
+
+}
+extern void sbsoutmsg(FileWrapper &Ffp, sbsmsg_t *sbsmsg){
+	FILE *fp = Ffp.file;
+    sbsoutmsg(fp, sbsmsg);
+
+}
+extern int dl_exec(gtime_t ts, gtime_t te, double ti, int seqnos, int seqnoe, const url_t *urls, int nurl,std::vector<std::string> Dstas, int nsta, const char *dir, const char *usr, const char *pwd, const char *proxy, int opts,Arr1D<char> Smsg, FileWrapper &Ffp){
+    char **stas = convertChar(Dstas);
+    char *msg = Smsg.src;
+	FILE *fp = Ffp.file;
+    auto tmp = dl_exec(ts, te, ti, seqnos, seqnoe, urls, nurl, stas, nsta, dir, usr, pwd, proxy, opts, msg, fp);
+    free(stas);
+    return tmp;
+}
+extern void dl_test(gtime_t ts, gtime_t te, double ti, const url_t *urls, int nurl,std::vector<std::string> Dstas, int nsta, const char *dir, int ncol, int datefmt, FileWrapper &Ffp){
+    char **stas = convertChar(Dstas);
+	FILE *fp = Ffp.file;
+    dl_test(ts, te, ti, urls, nurl, stas, nsta, dir, ncol, datefmt, fp);
+    free(stas);
+
+}
+
 PYBIND11_MODULE(pyrtklib, m) {
+    py::class_<FileWrapper>(m, "FileWrapper")
+        .def(py::init<const char*, const char*>())
+        .def("get", &FileWrapper::get, py::return_value_policy::reference)
+        .def("cleareof", &FileWrapper::cleareof);
+    
     m.doc() = "rtklib python interface by pybind11";
 	m.attr("NULL") = 0;
     m.attr("PI")=3.1415926535897932;
@@ -2498,6 +2691,42 @@ PYBIND11_MODULE(pyrtklib, m) {
     m.def("dl_readstas",static_cast<int(*)(const char *file,std::vector<std::string> Dstas, int nmax)>(&dl_readstas),"rtklib dl_readstas");
     m.def("dl_exec",static_cast<int(*)(gtime_t ts, gtime_t te, double ti, int seqnos, int seqnoe, const url_t *urls, int nurl,std::vector<std::string> Dstas, int nsta, const char *dir, const char *usr, const char *pwd, const char *proxy, int opts,Arr1D<char> Smsg, const char *Ffp, const char *mode)>(&dl_exec),"rtklib dl_exec");
     m.def("dl_test",static_cast<void(*)(gtime_t ts, gtime_t te, double ti, const url_t *urls, int nurl,std::vector<std::string> Dstas, int nsta, const char *dir, int ncol, int datefmt, const char *Ffp, const char *mode)>(&dl_test),"rtklib dl_test");
+    m.def("matfprint",static_cast<void(*)(Arr1D<double> SA, int n, int m, int p, int q, FileWrapper &Ffp)>(&matfprint),"rtklib matfprint");
+    m.def("outrnxobsh",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav)>(&outrnxobsh),"rtklib outrnxobsh");
+    m.def("outrnxobsb",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const obsd_t *obs, int n, int epflag)>(&outrnxobsb),"rtklib outrnxobsb");
+    m.def("outrnxnavh",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav)>(&outrnxnavh),"rtklib outrnxnavh");
+    m.def("outrnxgnavh",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav)>(&outrnxgnavh),"rtklib outrnxgnavh");
+    m.def("outrnxhnavh",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav)>(&outrnxhnavh),"rtklib outrnxhnavh");
+    m.def("outrnxlnavh",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav)>(&outrnxlnavh),"rtklib outrnxlnavh");
+    m.def("outrnxqnavh",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav)>(&outrnxqnavh),"rtklib outrnxqnavh");
+    m.def("outrnxcnavh",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav)>(&outrnxcnavh),"rtklib outrnxcnavh");
+    m.def("outrnxinavh",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const nav_t *nav)>(&outrnxinavh),"rtklib outrnxinavh");
+    m.def("outrnxnavb",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const eph_t *eph)>(&outrnxnavb),"rtklib outrnxnavb");
+    m.def("outrnxgnavb",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const geph_t *geph)>(&outrnxgnavb),"rtklib outrnxgnavb");
+    m.def("outrnxhnavb",static_cast<int(*)(FileWrapper &Ffp, const rnxopt_t *opt, const seph_t *seph)>(&outrnxhnavb),"rtklib outrnxhnavb");
+    m.def("open_rnxctr",static_cast<int(*)(rnxctr_t *rnx, FileWrapper &Ffp)>(&open_rnxctr),"rtklib open_rnxctr");
+    m.def("input_rnxctr",static_cast<int(*)(rnxctr_t *rnx, FileWrapper &Ffp)>(&input_rnxctr),"rtklib input_rnxctr");
+    m.def("input_rawf",static_cast<int(*)(raw_t *raw, int format, FileWrapper &Ffp)>(&input_rawf),"rtklib input_rawf");
+    m.def("input_oem4f",static_cast<int(*)(raw_t *raw, FileWrapper &Ffp)>(&input_oem4f),"rtklib input_oem4f");
+    m.def("input_oem3f",static_cast<int(*)(raw_t *raw, FileWrapper &Ffp)>(&input_oem3f),"rtklib input_oem3f");
+    m.def("input_ubxf",static_cast<int(*)(raw_t *raw, FileWrapper &Ffp)>(&input_ubxf),"rtklib input_ubxf");
+    m.def("input_ss2f",static_cast<int(*)(raw_t *raw, FileWrapper &Ffp)>(&input_ss2f),"rtklib input_ss2f");
+    m.def("input_cresf",static_cast<int(*)(raw_t *raw, FileWrapper &Ffp)>(&input_cresf),"rtklib input_cresf");
+    m.def("input_stqf",static_cast<int(*)(raw_t *raw, FileWrapper &Ffp)>(&input_stqf),"rtklib input_stqf");
+    m.def("input_javadf",static_cast<int(*)(raw_t *raw, FileWrapper &Ffp)>(&input_javadf),"rtklib input_javadf");
+    m.def("input_nvsf",static_cast<int(*)(raw_t *raw, FileWrapper &Ffp)>(&input_nvsf),"rtklib input_nvsf");
+    m.def("input_bnxf",static_cast<int(*)(raw_t *raw, FileWrapper &Ffp)>(&input_bnxf),"rtklib input_bnxf");
+    m.def("input_rt17f",static_cast<int(*)(raw_t *raw, FileWrapper &Ffp)>(&input_rt17f),"rtklib input_rt17f");
+    m.def("input_sbff",static_cast<int(*)(raw_t *raw, FileWrapper &Ffp)>(&input_sbff),"rtklib input_sbff");
+    m.def("input_rtcm2f",static_cast<int(*)(rtcm_t *rtcm, FileWrapper &Ffp)>(&input_rtcm2f),"rtklib input_rtcm2f");
+    m.def("input_rtcm3f",static_cast<int(*)(rtcm_t *rtcm, FileWrapper &Ffp)>(&input_rtcm3f),"rtklib input_rtcm3f");
+    m.def("outprcopt",static_cast<void(*)(FileWrapper &Ffp, const prcopt_t *opt)>(&outprcopt),"rtklib outprcopt");
+    m.def("outsolhead",static_cast<void(*)(FileWrapper &Ffp, const solopt_t *opt)>(&outsolhead),"rtklib outsolhead");
+    m.def("outsol",static_cast<void(*)(FileWrapper &Ffp, const sol_t *sol,Arr1D<double> Srb, const solopt_t *opt)>(&outsol),"rtklib outsol");
+    m.def("outsolex",static_cast<void(*)(FileWrapper &Ffp, const sol_t *sol, const ssat_t *ssat, const solopt_t *opt)>(&outsolex),"rtklib outsolex");
+    m.def("sbsoutmsg",static_cast<void(*)(FileWrapper &Ffp, sbsmsg_t *sbsmsg)>(&sbsoutmsg),"rtklib sbsoutmsg");
+    m.def("dl_exec",static_cast<int(*)(gtime_t ts, gtime_t te, double ti, int seqnos, int seqnoe, const url_t *urls, int nurl,std::vector<std::string> Dstas, int nsta, const char *dir, const char *usr, const char *pwd, const char *proxy, int opts,Arr1D<char> Smsg, FileWrapper &Ffp)>(&dl_exec),"rtklib dl_exec");
+    m.def("dl_test",static_cast<void(*)(gtime_t ts, gtime_t te, double ti, const url_t *urls, int nurl,std::vector<std::string> Dstas, int nsta, const char *dir, int ncol, int datefmt, FileWrapper &Ffp)>(&dl_test),"rtklib dl_test");
     m.def("satno",&satno,"rtklib satno");
     m.def("satid2no",&satid2no,"rtklib satid2no");
     m.def("obs2code",&obs2code,"rtklib obs2code");

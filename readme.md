@@ -2,6 +2,30 @@
 
 ## News
 
+### 2024.09.22 v0.2.7 Experimental Features - Tightly coupled deep learning and GNSS integration
+1. **A tightly coupled deep learning and GNSS integration subsystem** is currently under development and several useful functions are implemented(e.g. weight least squares in rtk_util.py)! For more details, please refer to the dev repo [TDL-GNSS](https://github.com/ebhrz/TDL-GNSS).
+
+2. A **File Wrapper** has been introduced to manage the context of file descriptors. In previous versions, the file handler lacked proper context management. In this version, the "FILE*" parameters are replaced by a `FileWrapper`. For more details, refer to the definition in `cbind.h`. Additionally, the previous expansion `const char *filename, const char *mode` is still supported.
+
+   Here is an example: Suppose you need to use an RTCM stream from an NTRIP server, and the file may be updated frequently. We can use the following program to create a `FileWrapper`:
+
+   ```python
+   import pyrtklib as prl
+   
+   def get_rtcmf(rtcm, fp):
+       ret = 1
+       while ret != -2:
+           ret = prl.input_rtcm3f(rtcm, fp)
+       fp.cleareof()  # Clears EOF to continue reading
+       return rtcm
+   
+   rtcm = prl.rtcm_t()
+   prl.init_rtcm(rtcm)
+   eph_file = prl.FileWrapper("eph.rtcm3", "rb")
+   get_rtcmf(rtcm, eph_file)
+   ```
+    Note that the cleareof() method uses clearerr() to reset the EOF status of file reading, allowing the program to continue reading from where it left off rather than starting from the beginning.
+
 ### 2024.07.10 Add windows support
 
 The release packages now are built with github actions. And windows support is testing. They are available on linux, macos, and windows now. If you find any bug, please submit issues.

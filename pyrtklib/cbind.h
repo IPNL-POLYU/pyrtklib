@@ -2,6 +2,7 @@
 #include <pybind11/stl.h>
 #include <memory>
 #include <iostream>
+#include <cstdio>
 
 namespace py = pybind11;
 #define BINDARR1D(Type) pybind11::class_<Arr1D<Type>>(m,"Arr1D"#Type)\
@@ -28,6 +29,32 @@ namespace py = pybind11;
     .def_readonly("ptr",&Arr2D<Type>::src,py::return_value_policy::reference)\
     .def("set",[](Arr2D<Type> &arr,Arr2D<Type> *nsrc){arr.src = (Type*)nsrc->src;})\
     .def("print",[](Arr2D<Type> &arr){std::cout<<(arr.src)<<std::endl;});
+
+
+
+class FileWrapper {
+    public:
+        FileWrapper(const char* filename, const char* mode) {
+            file = fopen(filename, mode);
+        }
+
+        ~FileWrapper() {
+            if (file) {
+                fclose(file);
+            }
+        }
+
+        FILE* get() const {
+            return file;
+        }
+
+        void cleareof(){
+            clearerr(file);
+        }
+
+    public:
+        FILE* file;
+};
 
 
 template <class T>

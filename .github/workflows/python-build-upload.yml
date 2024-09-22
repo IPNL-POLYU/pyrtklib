@@ -87,6 +87,12 @@ jobs:
       env:
         CIBW_BUILD: ${{ matrix.cibw-build }}
     
+    - name: Upload distributions
+      uses: actions/upload-artifact@v4
+      with:
+        name: python-wheels
+        path: wheelhouse/*.whl
+
     - name: Get the current tag name
       id: get_tag_name
       run: echo ::set-output name=TAG_NAME::${GITHUB_REF#refs/tags/}

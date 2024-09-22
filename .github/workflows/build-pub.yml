@@ -1,4 +1,4 @@
-name: Build and Test Wheels
+name: Build and Pub Wheels
 
 on:
   workflow_dispatch:

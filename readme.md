@@ -2,6 +2,23 @@
 
 ## News
 
+### 2024.09.23
+
+The preprint version of our paper ***pyrtklib*: An open-source package for tightly coupled deep learning and GNSS integration for positioning in urban canyons** is now available on [arxiv](https://arxiv.org/abs/2409.12996).
+
+We would greatly appreciate it if you could cite our work:
+```latex
+@misc{hu2024pyrtklibopensourcepackagetightly,
+      title={pyrtklib: An open-source package for tightly coupled deep learning and GNSS integration for positioning in urban canyons}, 
+      author={Runzhi Hu and Penghui Xu and Yihan Zhong and Weisong Wen},
+      year={2024},
+      eprint={2409.12996},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2409.12996}, 
+}
+```
+
 ### 2024.09.22 v0.2.7 Experimental Features - Tightly coupled deep learning and GNSS integration
 1. **A tightly coupled deep learning and GNSS integration subsystem** is currently under development and several useful functions are implemented(e.g. weight least squares in rtk_util.py)! For more details, please refer to the dev repo [TDL-GNSS](https://github.com/ebhrz/TDL-GNSS).
 

@@ -249,7 +249,17 @@ For more detail, you can see in the example.py.
 
 ## Citation
 If you find this tool useful, you can cite our paper as:
-
+```latex
+@misc{hu2024pyrtklibopensourcepackagetightly,
+      title={pyrtklib: An open-source package for tightly coupled deep learning and GNSS integration for positioning in urban canyons}, 
+      author={Runzhi Hu and Penghui Xu and Yihan Zhong and Weisong Wen},
+      year={2024},
+      eprint={2409.12996},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/2409.12996}, 
+}
+```
 
 ```latex
 @inproceedings{hu2023fisheye,

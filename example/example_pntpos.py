@@ -7,7 +7,7 @@ def nextobsf(obs,i):
     n = 0
     while i+n < obs.n:
         tt = timediff(obs.data[i+n].time,obs.data[i].time)
-        if tt > 0.05:
+        if abs(tt) > 0.05:
             break
         n+=1
     return n
@@ -67,8 +67,8 @@ tracelevel(4)
 
 
 files = [
-    '/home/hrz/project/rtk/v_rtk/data/KLB/F9P_211203_061807.obs',
-    "/home/hrz/project/rtk/v_rtk/data/KLB/BRDC00IGS_R_20213370000_01D_MN.rnx"
+    'data/F9P_211203_061807.obs',
+    "data/BRDC00IGS_R_20213370000_01D_MN.rnx"
 ]
 obs = obs_t()
 nav = nav_t()

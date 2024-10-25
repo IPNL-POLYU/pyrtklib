@@ -2,6 +2,12 @@
 
 ## News
 
+### 2024.10.25
+
+1. We opensourced a new light urban dataset with LOS/NLOS label and other sensor data. Please find and play in (KLTDatset)[https://github.com/ebhrz/KLTDataset].
+
+2. We optimized the file structure, and put the example script to the example folder to avoid error importing issue. The example observation data is also uploaded to the folder.
+
 ### 2024.09.23
 
 The preprint version of our paper ***pyrtklib*: An open-source package for tightly coupled deep learning and GNSS integration for positioning in urban canyons** is now available on [arxiv](https://arxiv.org/abs/2409.12996).

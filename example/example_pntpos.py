@@ -1,7 +1,6 @@
 from pyrtklib import *
-import pandas as pd
 import numpy as np
-
+import os
 
 def nextobsf(obs,i):
     n = 0
@@ -70,6 +69,11 @@ files = [
     'data/F9P_211203_061807.obs',
     "data/BRDC00IGS_R_20213370000_01D_MN.rnx"
 ]
+
+if os.name == 'nt':
+    # if windows, use \\ as path separator
+    files = [file.replace('/', '\\') for file in files]
+
 obs = obs_t()
 nav = nav_t()
 sta = sta_t()

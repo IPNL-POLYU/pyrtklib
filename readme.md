@@ -2,6 +2,25 @@
 
 ## News
 
+### 2025.10.03
+We roughly adapt pyrtklib5 binding to [rtklib_demo5 2.5.0 EX](https://github.com/rtklibexplorer/RTKLIB). But it's not fully tested. Please kindly report issue when you have trouble. And we have a more pythonic frontend called [TASGNSS](https://github.com/PolyU-TASLAB/TASGNSS). Feel free to have try.
+
+Our paper has been successfully published in *IEEE Transactions on Intelligent Transportation Systems*! If you find our tool useful, please cite our paper, thanks so much!
+```latex
+@ARTICLE{10965937,
+  author={Hu, Runzhi and Xu, Penghui and Zhong, Yihan and Wen, Weisong},
+  journal={IEEE Transactions on Intelligent Transportation Systems}, 
+  title={pyrtklib: An Open-Source Package for Tightly Coupled Deep Learning and GNSS Integration for Positioning in Urban Canyons}, 
+  year={2025},
+  volume={26},
+  number={7},
+  pages={10652-10662},
+  keywords={Global navigation satellite system;Deep learning;Python;Artificial intelligence;Weight measurement;Satellites;Receivers;Mathematical models;Training;Position measurement;Artificial intelligence;deep learning;GNSS;RTKLIB},
+  doi={10.1109/TITS.2025.3552691}}
+```
+
+
+
 ### 2024.10.25
 
 1. We opensourced a new light urban dataset with LOS/NLOS label and other sensor data. Please find and play in [KLTDatset](https://github.com/ebhrz/KLTDataset).
@@ -256,15 +275,16 @@ For more detail, you can see in the example.py.
 ## Citation
 If you find this tool useful, you can cite our paper as:
 ```latex
-@misc{hu2024pyrtklibopensourcepackagetightly,
-      title={pyrtklib: An open-source package for tightly coupled deep learning and GNSS integration for positioning in urban canyons}, 
-      author={Runzhi Hu and Penghui Xu and Yihan Zhong and Weisong Wen},
-      year={2024},
-      eprint={2409.12996},
-      archivePrefix={arXiv},
-      primaryClass={cs.LG},
-      url={https://arxiv.org/abs/2409.12996}, 
-}
+@ARTICLE{10965937,
+  author={Hu, Runzhi and Xu, Penghui and Zhong, Yihan and Wen, Weisong},
+  journal={IEEE Transactions on Intelligent Transportation Systems}, 
+  title={pyrtklib: An Open-Source Package for Tightly Coupled Deep Learning and GNSS Integration for Positioning in Urban Canyons}, 
+  year={2025},
+  volume={26},
+  number={7},
+  pages={10652-10662},
+  keywords={Global navigation satellite system;Deep learning;Python;Artificial intelligence;Weight measurement;Satellites;Receivers;Mathematical models;Training;Position measurement;Artificial intelligence;deep learning;GNSS;RTKLIB},
+  doi={10.1109/TITS.2025.3552691}}
 ```
 
 ```latex

@@ -19,6 +19,18 @@ Our paper has been successfully published in *IEEE Transactions on Intelligent T
   doi={10.1109/TITS.2025.3552691}}
 ```
 
+Note that Python 3.6 and 3.7 will be no longer supported in the future possible update, while Python 3.12 and 3.13 are now officially supported.
+
+| Python | Linux(After 2010) | Macos Sonoma(M1) | Macos Ventura(Intel)| Windows |
+| :----: | :----: | :----: | :----: | :----: |
+| 3.6 | &#x274C; | &#x274C; | &#x274C; |  &#x2705; |
+| 3.7 | &#x2705; | &#x274C; | &#x274C; |  &#x2705; |
+| 3.8 | &#x2705; | &#x2705; | &#x2705; |  &#x2705; |
+| 3.9 | &#x2705; | &#x2705; | &#x2705; |  &#x2705; |
+| 3.10 | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
+| 3.11 | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
+| 3.12 | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
+| 3.13 | &#x2705; | &#x2705; | &#x2705; | &#x2705; |
 
 
 ### 2024.10.25

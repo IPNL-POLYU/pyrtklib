@@ -49,7 +49,7 @@ class BuildExt(build_ext):
 
         if os.name == "nt":
             cmake_args += [
-                "-DCMAKE_GENERATOR=Visual Studio 16 2019",  # or your specific Visual Studio version
+                "-DCMAKE_GENERATOR=Visual Studio 17 2022",  # or your specific Visual Studio version
                 "-A", "x64",  # or your specific architecture
                 "-DCMAKE_C_FLAGS_RELEASE=/MT",
                 "-DCMAKE_CXX_FLAGS_RELEASE=/MT",

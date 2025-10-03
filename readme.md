@@ -3,7 +3,7 @@
 ## News
 
 ### 2025.10.03
-We roughly adapt pyrtklib5 binding to [rtklib_demo5 2.5.0 EX](https://github.com/rtklibexplorer/RTKLIB). But it's not fully tested. Please kindly report issue when you have trouble. And we have a more pythonic frontend called [TASGNSS](https://github.com/PolyU-TASLAB/TASGNSS). Feel free to have try.
+We now support python 3.12 and 3.13. And we roughly adapt pyrtklib5 binding to [rtklib_demo5 2.5.0 EX](https://github.com/rtklibexplorer/RTKLIB). But it's not fully tested. Please kindly report issue when you have trouble. And we have a more pythonic frontend called [TASGNSS](https://github.com/PolyU-TASLAB/TASGNSS). Feel free to have try.
 
 Our paper has been successfully published in *IEEE Transactions on Intelligent Transportation Systems*! If you find our tool useful, please cite our paper, thanks so much!
 ```latex
